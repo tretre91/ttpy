@@ -201,14 +201,14 @@ class vector(object):
         newcrs = []
         cr = crs[0]
         rl, n, rr = cr.shape
-        newcr = _np.zeros((rl, n, rr * 2), dtype=_np.float)
+        newcr = _np.zeros((rl, n, rr * 2), dtype=float)
         newcr[:, :, :rr] = _np.real(cr)
         newcr[:, :, rr:] = _np.imag(cr)
         newcrs.append(newcr)
         for i in xrange(1, self.d - 1):
             cr = crs[i]
             rl, n, rr = cr.shape
-            newcr = _np.zeros((rl * 2, n, rr * 2), dtype=_np.float)
+            newcr = _np.zeros((rl * 2, n, rr * 2), dtype=float)
             newcr[:rl, :, :rr] = newcr[rl:, :, rr:] = _np.real(cr)
             newcr[:rl, :, rr:] = _np.imag(cr)
             newcr[rl:, :, :rr] = -_np.imag(cr)
@@ -217,33 +217,33 @@ class vector(object):
         rl, n, rr = cr.shape
         if op in ['R', 'r', 'Re']:
             # get real part
-            newcr = _np.zeros((rl * 2, n, rr), dtype=_np.float)
+            newcr = _np.zeros((rl * 2, n, rr), dtype=float)
             newcr[:rl, :, :] = _np.real(cr)
             newcr[rl:, :, :] = -_np.imag(cr)
         elif op in ['I', 'i', 'Im']:
             # get imaginary part
-            newcr = _np.zeros((rl * 2, n, rr), dtype=_np.float)
+            newcr = _np.zeros((rl * 2, n, rr), dtype=float)
             newcr[:rl, :, :] = _np.imag(cr)
             newcr[rl:, :, :] = _np.real(cr)
         elif op in ['A', 'B', 'all', 'both']:
             # get both parts (increase dimensionality)
-            newcr = _np.zeros((rl * 2, n, 2 * rr), dtype=_np.float)
+            newcr = _np.zeros((rl * 2, n, 2 * rr), dtype=float)
             newcr[:rl, :, :rr] = _np.real(cr)
             newcr[rl:, :, :rr] = -_np.imag(cr)
             newcr[:rl, :, rr:] = _np.imag(cr)
             newcr[rl:, :, rr:] = _np.real(cr)
             newcrs.append(newcr)
-            newcr = _np.zeros((rr * 2, 2, 1), dtype=_np.float)
+            newcr = _np.zeros((rr * 2, 2, 1), dtype=float)
             newcr[:rr, 0, :] = newcr[rr:, 1, :] = 1.0
         elif op in ['M']:
             # get matrix modificated for real-arithm. solver
-            newcr = _np.zeros((rl * 2, n, 2 * rr), dtype=_np.float)
+            newcr = _np.zeros((rl * 2, n, 2 * rr), dtype=float)
             newcr[:rl, :, :rr] = _np.real(cr)
             newcr[rl:, :, :rr] = -_np.imag(cr)
             newcr[:rl, :, rr:] = _np.imag(cr)
             newcr[rl:, :, rr:] = _np.real(cr)
             newcrs.append(newcr)
-            newcr = _np.zeros((rr * 2, 4, 1), dtype=_np.float)
+            newcr = _np.zeros((rr * 2, 4, 1), dtype=float)
             newcr[:rr, [0, 3], :] = 1.0
             newcr[rr:, 1, :] = 1.0
             newcr[rr:, 2, :] = -1.0
@@ -554,7 +554,7 @@ class vector(object):
             _np.int32)
 
     def alloc_core(self):
-        self.core = _np.zeros((self.ps[self.d] - 1,), dtype=_np.float)
+        self.core = _np.zeros((self.ps[self.d] - 1,), dtype=float)
 
     def copy(self):
         c = vector()

@@ -18,11 +18,11 @@ def gen_1d(mat,e,i,d):
 
 def gen_heisen(d):
     sx = [[0,1],[1,0]]
-    sx = np.array(sx,dtype=np.float)
+    sx = np.array(sx,dtype=float)
     sz = [[1,0],[0,-1]]
-    sz = np.array(sz,dtype=np.float)
+    sz = np.array(sz,dtype=float)
     sz = 0.5 * sz
-    sp = [[0,1],[0,0]]; sp =  np.array(sp,dtype=np.float)
+    sp = [[0,1],[0,0]]; sp =  np.array(sp,dtype=float)
     sm = sp.T
     e = np.eye(2)
     sx = tt.matrix(sx,1e-12)
